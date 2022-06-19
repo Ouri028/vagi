@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Jun 19 11:01:10 2022
+# Make data base, printed on Sun Jun 19 13:42:01 2022
 
 # Variables
 
@@ -67,7 +67,7 @@ MAKEFILE_LIST :=  Makefile
 # makefile (from 'Makefile', line 3)
 ARGS = -cg
 # environment
-GIO_LAUNCHED_DESKTOP_FILE = /etc/xdg/autostart/pantheon-org.gnome.SettingsDaemon.MediaKeys.desktop
+GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/io.elementary.terminal.desktop
 # 'override' directive
 GNUMAKEFLAGS := 
 # environment
@@ -133,7 +133,7 @@ XDG_SESSION_DESKTOP = pantheon
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 417910
+GIO_LAUNCHED_DESKTOP_FILE_PID = 501129
 # automatic
 %F = $(notdir $%)
 # environment
@@ -207,7 +207,7 @@ CC = v
 # environment
 JAVA_HOME = /home/sylvester/GraalVM
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-93c76b1b-4d40-445f-819e-e98eefadd47b.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-60c39171-642a-4d65-9816-6790f9c2a21c.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -296,7 +296,7 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 418424
+VSCODE_PID = 501842
 # makefile (from 'Makefile', line 2)
 FILES = main.v
 # variable set hash-table stats:
@@ -308,9 +308,9 @@ FILES = main.v
 
 # Directories
 
-# . (device 64768, inode 29624866): 13 files, no impossibilities.
+# . (device 64768, inode 29624866): 14 files, no impossibilities.
 
-# 13 files, no impossibilities in 1 directories.
+# 14 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -377,7 +377,7 @@ Makefile:
 # Not a target:
 main.v:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-19 10:58:11.303316561
+#  Last modified 2022-06-19 12:42:10.911925344
 #  File has been updated.
 #  Successfully updated.
 
@@ -389,12 +389,12 @@ main.v:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 19 / storage = 161 B / avg = 8 B
-# current buf: size = 8162 B / used = 161 B / count = 19 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 20 / storage = 183 B / avg = 9 B
+# current buf: size = 8162 B / used = 183 B / count = 20 / avg = 9 B
 
-# strcache performance: lookups = 28 / hit rate = 32%
+# strcache performance: lookups = 29 / hit rate = 31%
 # hash-table stats:
-# Load=19/8192=0%, Rehash=0, Collisions=1/28=4%
-# Finished Make data base on Sun Jun 19 11:01:10 2022
+# Load=20/8192=0%, Rehash=0, Collisions=1/29=3%
+# Finished Make data base on Sun Jun 19 13:42:01 2022
 
  
