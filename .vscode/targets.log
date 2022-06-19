@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Jun 19 02:09:51 2022
+# Make data base, printed on Sun Jun 19 11:01:10 2022
 
 # Variables
 
@@ -67,7 +67,7 @@ MAKEFILE_LIST :=  Makefile
 # makefile (from 'Makefile', line 3)
 ARGS = -cg
 # environment
-GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/io.elementary.terminal.desktop
+GIO_LAUNCHED_DESKTOP_FILE = /etc/xdg/autostart/pantheon-org.gnome.SettingsDaemon.MediaKeys.desktop
 # 'override' directive
 GNUMAKEFLAGS := 
 # environment
@@ -133,7 +133,7 @@ XDG_SESSION_DESKTOP = pantheon
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 68785
+GIO_LAUNCHED_DESKTOP_FILE_PID = 417910
 # automatic
 %F = $(notdir $%)
 # environment
@@ -207,7 +207,7 @@ CC = v
 # environment
 JAVA_HOME = /home/sylvester/GraalVM
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-33414246-c842-440a-84f2-4a42afd66dfd.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-93c76b1b-4d40-445f-819e-e98eefadd47b.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -228,8 +228,6 @@ LC_TELEPHONE = en_ZA.UTF-8
 GCM_CREDENTIAL_STORE = secretservice
 # default
 MAKE_COMMAND := make
-# environment
-OLDPWD = /home/sylvester/Documents/Github
 # default
 .VARIABLES := 
 # automatic
@@ -277,7 +275,6 @@ SNAP_NAME = code
 # environment
 LC_ALL = C
 # automatic
- 
 ^F = $(notdir $^)
 # default
 SUFFIXES := 
@@ -287,6 +284,7 @@ SNAP_REEXEC =
 CHROME_DESKTOP = code-url-handler.desktop
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+ 
 # environment
 LC_IDENTIFICATION = en_ZA.UTF-8
 # default
@@ -298,11 +296,11 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 152707
+VSCODE_PID = 418424
 # makefile (from 'Makefile', line 2)
 FILES = main.v
 # variable set hash-table stats:
-# Load=145/1024=14%, Rehash=0, Collisions=15/177=8%
+# Load=144/1024=14%, Rehash=0, Collisions=15/176=9%
 
 # Pattern-specific Variable Values
 
@@ -379,7 +377,7 @@ Makefile:
 # Not a target:
 main.v:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-19 02:04:29.417010064
+#  Last modified 2022-06-19 10:58:11.303316561
 #  File has been updated.
 #  Successfully updated.
 
@@ -397,6 +395,6 @@ main.v:
 # strcache performance: lookups = 28 / hit rate = 32%
 # hash-table stats:
 # Load=19/8192=0%, Rehash=0, Collisions=1/28=4%
-# Finished Make data base on Sun Jun 19 02:09:51 2022
+# Finished Make data base on Sun Jun 19 11:01:10 2022
 
  
