@@ -74,21 +74,6 @@ const (
 	err_hangup          = 'hangup'
 )
 
-// Res returns the ResultString of a Response, as well as any error encountered.  Depending on the command, this is sometimes more useful than Val()
-pub fn (r Response) res() (string, string) {
-	return r.result_string, r.error
-}
-
-// Err returns the error value from the response
-pub fn (r Response) err() string {
-	return r.error
-}
-
-// Val returns the response value and error
-pub fn (r Response) val() (string, string) {
-	return r.value, r.error
-}
-
 // Regex for AGI response result code and value
 // var responseRegex = regexp.MustCompile(`^([\d]{3})\sresult=(\-?[[:alnum:]]*)(\s.*)?$`)
 
@@ -110,16 +95,16 @@ pub fn (mut a AGI) new_with_eagi(mut conn net.TcpConn) AGI {
 
 // Listen binds an AGI HandlerFunc to the given TCP `host:port` address, creating a FastAGI service.
 pub fn listen<T>(port string, mut a T) {
-	mut l := net.listen_tcp(.ip6, ':$port') or { panic(err) }
+	mut l := net.listen_tcp(.ip6, ':$port') or { panic('[ERROR] Failed to bind address with error -> ${err.msg()}') }
 
 	defer {
 		l.close() or {}
 	}
 
-	addr := l.addr() or { panic(err) }
+	addr := l.addr() or { panic('[ERROR] Failed to bind address with error -> ${err.msg()}') }
 	eprintln('[Touched-AGI] Fast AGI listening on $addr')
 	for {
-		mut socket := l.accept() or { panic(err) }
+		mut socket := l.accept() or { panic('[ERROR] Failed to accept socket client with error -> ${err.msg()}') }
 		new(mut socket, mut a)
 		a.instance()
 		a.close()
@@ -134,18 +119,27 @@ pub fn (mut a AGI) close() {
 	println('Connection Closed()')
 }
 
-pub fn (mut a AGI) send_command(cmd string) {
+pub fn (mut a AGI) send_command(cmd ...string) {
 	mut resp := Response{}
-	mut raw_cmd := '$cmd\n'
-	a.conn.write(raw_cmd.bytes()) or { return }
+	mut raw_cmd := cmd.join(' ')
+	raw_cmd += '\n'
+	println(raw_cmd)
+	a.conn.write(raw_cmd.bytes()) or { 
+		resp.error = 'Failed to send command to Asterisk with error: ${err.msg()}'
+		return
+	 }
 	for {
-		raw := a.r.read_line() or { return }
+		raw := a.r.read_line() or { 
+			resp.error = 'Failed to read buffer with error: ${err.msg()}'
+			break
+		 }
+		 println(raw)
 		if raw == '' {
 			break
 		}
-		if raw.contains('HANGUP') ||  raw.contains('-1') {
-			resp.error = touched_agi_v.err_hangup
-			return
+		if raw.contains('HANGUP') || raw.contains('-1') {
+			resp.error = err_hangup
+			break
 		}
 	}	
 }
@@ -158,4 +152,9 @@ pub fn (mut a AGI) answer() {
 pub fn (mut a AGI) stream_file(filename string) {
 	command := 'STREAM FILE "${filename}" "[]"'
 	a.send_command(command)
+}
+
+// GetData plays a file and receives DTMF, returning the received digits
+pub fn (mut a AGI) get_data(sound string, timeout string, max_digits string) {
+	a.send_command("GET DATA", sound, timeout, max_digits)
 }

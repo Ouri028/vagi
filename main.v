@@ -13,5 +13,5 @@ fn main() {
 
 pub fn (mut a Agi) instance() {
 	a.answer()
-	a.stream_file('moo2')
+	a.get_data('beep', '5000', '13')
 }
