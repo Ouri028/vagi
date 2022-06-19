@@ -1,0 +1,5 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/sylvester/Documents/Github/v-modules/touched-agi-v'
+v -cg run main.v
+make: Leaving directory '/home/sylvester/Documents/Github/v-modules/touched-agi-v'
+ 
