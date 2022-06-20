@@ -49,6 +49,7 @@ pub fn (mut a AGI) new_with_eagi(mut conn net.TcpConn) AGI {
 			break
 		}
 		data := raw.split(': ')
+		println(data.len)
 		a.variables[data[0]] = data[1]
 		if raw.contains('agi_arg_1') {
 			break
@@ -107,7 +108,6 @@ pub fn (mut a AGI) send_command(cmd string) Response {
 			resp.error = 'Failed to read buffer with error: $err.msg()'
 			return resp
 		}
-		println(raw)
 		if raw.contains('HANGUP') || raw.contains('-1') {
 			resp.error = err_hangup
 			break
@@ -125,21 +125,3 @@ pub fn (mut a AGI) send_command(cmd string) Response {
 	return resp
 }
 
-// answer answers the channel
-pub fn (mut a AGI) answer() {
-	a.send_command('ANSWER')
-}
-
-pub fn (mut a AGI) stream_file(filename string, escape_digits []string) {
-	a.send_command('STREAM FILE "$filename" "$escape_digits"')
-}
-
-// get_data plays a file and receives DTMF, returning the received digits as a string
-pub fn (mut a AGI) get_data(file string, timeout string, max_digits string) Response {
-	return a.send_command('GET DATA $file $timeout $max_digits')
-}
-
-// get_data plays a file and receives DTMF, returning the received digits as a string
-pub fn (mut a AGI) hangup() {
-	a.send_command('HANGUP')
-}

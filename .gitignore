@@ -7,3 +7,4 @@ touched-agi-v
 *.dylib
 *.dll
 vls.log
+.vscode/*
