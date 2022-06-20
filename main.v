@@ -15,7 +15,8 @@ pub fn (mut a Agi) instance() {
 	defer {
 		a.close()
 	}
-	a.answer()
-	a.get_data('beep', '5000', '13')
-	a.hangup()
+	// a.answer()
+	x := a.get_data('beep', '5000', '13')
+	println(x)
+	// a.hangup()
 }
