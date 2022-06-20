@@ -1,12 +1,5 @@
 module touched_agi_v
 
-const (
-	default_escape_digits = ['1', '2', '3', '4', '5', '6', '7', '8', '0']
-	skip_ms               = '3000'
-	ffchar                = '#'
-	rewchar               = '*'
-)
-
 /**
 *  response.value = "-1" | "0"
 *
@@ -72,10 +65,8 @@ pub fn (mut a AGI) channel_status() Response {
 * pause_char -- if provided, the set of chars that pause playback
 * https://wiki.asterisk.org/wiki/display/AST/Asterisk+17+AGICommand_control+stream+file
 */
-pub fn (mut a AGI) control_stream_file(filename string, mut escape_digits []string, skip_ms string, ff_char string, rew_char string, pause_char string, offsetms string) Response {
-	if escape_digits.len <= 0 {
-		escape_digits << touched_agi_v.default_escape_digits
-	}
+pub fn (mut a AGI) control_stream_file(filename string, escape_digits []string, skip_ms string, ff_char string, rew_char string, pause_char string, offsetms string) Response {
+
 	mut command := 'CONTROL STREAM FILE $filename "$escape_digits" $skip_ms $ff_char $rew_char'
 	if pause_char != '' {
 		command += ' $pause_char'
@@ -164,10 +155,8 @@ pub fn (mut a AGI) get_full_variable(name string, channel_name string) Response 
 	return a.send_command('GET FULL VARIABLE $name $channel_name')
 }
 
-pub fn (mut a AGI) get_option(filename string, mut escape_digits []string, timeout string) Response {
-	if escape_digits.len <= 0 {
-		escape_digits << touched_agi_v.default_escape_digits
-	}
+pub fn (mut a AGI) get_option(filename string, escape_digits []string, timeout string) Response {
+
 	return a.send_command('GET OPTION $filename "$escape_digits" $timeout')
 }
 
@@ -195,10 +184,8 @@ pub fn (mut a AGI) receive_text(timeout string) {
 	a.send_command('RECEIVE TEXT $timeout')
 }
 
-pub fn (mut a AGI) record_file(file string, format string, mut escape_digits []string, timeout string, offset_samples string, beep bool, silence string) Response {
-	if escape_digits.len <= 0 {
-		escape_digits << touched_agi_v.default_escape_digits
-	}
+pub fn (mut a AGI) record_file(file string, format string, escape_digits []string, timeout string, offset_samples string, beep bool, silence string) Response {
+
 	mut command := 'RECORD FILE "$file" $format "$escape_digits" $timeout $offset_samples'
 	if beep {
 		command += ' 1'
@@ -209,24 +196,18 @@ pub fn (mut a AGI) record_file(file string, format string, mut escape_digits []s
 	return a.send_command(command)
 }
 
-pub fn (mut a AGI) say_alpha(label string, mut escape_digits []string) Response {
-	if escape_digits.len <= 0 {
-		escape_digits << touched_agi_v.default_escape_digits
-	}
+pub fn (mut a AGI) say_alpha(label string, escape_digits []string) Response {
+
 	return a.send_command('SAY ALPHA $label "$escape_digits"')
 }
 
-pub fn (mut a AGI) say_date(date string, mut escape_digits []string) {
-	if escape_digits.len <= 0 {
-		escape_digits << touched_agi_v.default_escape_digits
-	}
+pub fn (mut a AGI) say_date(date string, escape_digits []string) {
+
 	a.send_command('SAY DATE $date "$escape_digits"')
 }
 
-pub fn (mut a AGI) say_date_time(date string, mut escape_digits []string, format string, timezone string) {
-	if escape_digits.len <= 0 {
-		escape_digits << touched_agi_v.default_escape_digits
-	}
+pub fn (mut a AGI) say_date_time(date string, escape_digits []string, format string, timezone string) {
+
 	mut command := 'SAY DATETIME $date "$escape_digits"'
 	if format != '' {
 		command += ' $format'
@@ -237,17 +218,13 @@ pub fn (mut a AGI) say_date_time(date string, mut escape_digits []string, format
 	a.send_command(command)
 }
 
-pub fn (mut a AGI) say_digits(data string, mut escape_digits []string) {
-	if escape_digits.len <= 0 {
-		escape_digits << touched_agi_v.default_escape_digits
-	}
+pub fn (mut a AGI) say_digits(data string, escape_digits []string) {
+
 	a.send_command('SAY DIGITS $data "$escape_digits"')
 }
 
-pub fn (mut a AGI) say_number(data string, mut escape_digits []string, gender string) {
-	if escape_digits.len <= 0 {
-		escape_digits << touched_agi_v.default_escape_digits
-	}
+pub fn (mut a AGI) say_number(data string, escape_digits []string, gender string) {
+
 	mut command := 'SAY NUMBER $data "$escape_digits"'
 	if gender != '' {
 		command += ' $gender'
@@ -255,17 +232,13 @@ pub fn (mut a AGI) say_number(data string, mut escape_digits []string, gender st
 	a.send_command(command)
 }
 
-pub fn (mut a AGI) say_phonetic(data string, mut escape_digits []string) {
-	if escape_digits.len <= 0 {
-		escape_digits << touched_agi_v.default_escape_digits
-	}
+pub fn (mut a AGI) say_phonetic(data string, escape_digits []string) {
+
 	a.send_command('SAY PHONETIC "$data" "$escape_digits"')
 }
 
-pub fn (mut a AGI) say_time(date string, mut escape_digits []string) {
-	if escape_digits.len <= 0 {
-		escape_digits << touched_agi_v.default_escape_digits
-	}
+pub fn (mut a AGI) say_time(date string, escape_digits []string) {
+
 	a.send_command('SAY TIME $date "$escape_digits"')
 }
 
@@ -305,10 +278,8 @@ pub fn (mut a AGI) set_variable(name string, value string) {
 	a.send_command('SET VARIABLE $name "$value"')
 }
 
-pub fn (mut a AGI) stream_file(filename string, mut escape_digits []string) {
-	if escape_digits.len <= 0 {
-		escape_digits << touched_agi_v.default_escape_digits
-	}
+pub fn (mut a AGI) stream_file(filename string, escape_digits []string) {
+
 	a.send_command('STREAM FILE "$filename" "$escape_digits"')
 }
 

@@ -48,7 +48,6 @@ fn (mut a AGI) new_with_eagi(mut conn net.TcpConn) AGI {
 			break
 		}
 		data := raw.split(': ')
-		println(data.len)
 		a.variables[data[0]] = data[1]
 		if raw.contains('agi_arg_1') {
 			break
