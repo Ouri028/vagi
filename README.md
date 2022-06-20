@@ -30,6 +30,7 @@ pub fn (mut a Agi) instance() {
 ```V
 fn listen<T>(port string, mut a T)
 fn new(mut conn net.TcpConn, mut a AGI) AGI
+fn (a AGI) instance()
 struct AGI {
 pub mut:
 // Variables stored the initial variables
@@ -57,7 +58,6 @@ fn (mut a AGI) get_option(filename string, mut escape_digits []string, timeout s
 fn (mut a AGI) get_variable(key string) Response
 fn (mut a AGI) go_sub(context string, extension string, priority string, opt_arg string)
 fn (mut a AGI) hangup()
-fn (a AGI) instance()
 fn (mut a AGI) noop()
 fn (mut a AGI) receive_char(timeout string)
 fn (mut a AGI) receive_text(timeout string)
