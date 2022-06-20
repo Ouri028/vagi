@@ -1,4 +1,4 @@
-module v_fastagi
+module vagi
 
 /**
 *  response.value = "-1" | "0"

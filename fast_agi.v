@@ -1,4 +1,4 @@
-module v_fastagi
+module vagi
 
 import io
 import net
@@ -107,7 +107,7 @@ pub fn (mut a AGI) send_command(cmd string) Response {
 			return resp
 		}
 		if raw.contains('HANGUP') || raw.contains('-1') {
-			resp.error = v_fastagi.err_hangup
+			resp.error = vagi.err_hangup
 			break
 		}
 		_, _ := re.match_string(raw)
