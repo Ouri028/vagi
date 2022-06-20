@@ -5,15 +5,15 @@ This is an Asterisk FastAGI interface library for V-Lang.
 ```V
 module main
 
-import touched_agi_v
+import v_fastagi
 
 pub struct Agi {
-	touched_agi_v.AGI
+	v_fastagi.AGI
 }
 
 fn main() {
 	mut agi := Agi{}
-	touched_agi_v.listen('5000', mut &agi)
+	v_fastagi.listen('5000', mut &agi)
 }
 
 pub fn (mut a Agi) instance() {

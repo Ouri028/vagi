@@ -1,4 +1,4 @@
-module touched_agi_v
+module v_fastagi
 
 import io
 import net
@@ -67,7 +67,7 @@ pub fn listen<T>(port string, mut a T) {
 	}
 
 	addr := l.addr() or { panic('[ERROR] Failed to bind address with error -> $err.msg()') }
-	eprintln('[Touched-AGI] Fast AGI listening on $addr')
+	eprintln('[V FastAGI] Fast AGI listening on $addr')
 	for {
 		mut socket := l.accept() or {
 			panic('[ERROR] Failed to accept socket client with error -> $err.msg()')
@@ -107,7 +107,7 @@ pub fn (mut a AGI) send_command(cmd string) Response {
 			return resp
 		}
 		if raw.contains('HANGUP') || raw.contains('-1') {
-			resp.error = touched_agi_v.err_hangup
+			resp.error = v_fastagi.err_hangup
 			break
 		}
 		_, _ := re.match_string(raw)

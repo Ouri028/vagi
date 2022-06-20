@@ -1,4 +1,4 @@
-module touched_agi_v
+module v_fastagi
 
 /**
 *  response.value = "-1" | "0"
