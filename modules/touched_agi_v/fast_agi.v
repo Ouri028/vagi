@@ -17,8 +17,7 @@ pub mut:
 	mu        sync.Mutex
 }
 
-// Response represents a response to an AGI
-// request.
+// Response represents a response to an AGI request.
 pub struct Response {
 pub mut:
 	error  string
@@ -30,15 +29,15 @@ const (
 	err_hangup = 'HANGUP'
 )
 
-// // New creates an AGI session from the given reader and writer.
+// // new creates an AGI session from the given reader and writer.
 pub fn new(mut conn net.TcpConn, mut a AGI) AGI {
 	return a.new_with_eagi(mut conn)
 }
 
-// NewWithEAGI returns a new AGI session to the given `os.Stdin` `io.Reader`,
+// new_with_eagi returns a new AGI session to the given `os.Stdin` `io.Reader`,
 // EAGI `io.Reader`, and `os.Stdout` `io.Writer`. The initial variables will
 // be read in.
-pub fn (mut a AGI) new_with_eagi(mut conn net.TcpConn) AGI {
+fn (mut a AGI) new_with_eagi(mut conn net.TcpConn) AGI {
 	mut reader := io.new_buffered_reader(reader: io.make_readerwriter(conn, conn))
 	a.r = reader
 	a.conn = conn
@@ -80,12 +79,12 @@ pub fn listen<T>(port string, mut a T) {
 	}
 }
 
+// instance is what will be called to execute your AGI logic.
 pub fn (a AGI) instance() {}
 
 // Close closes any network connection associated with the AGI instance
 pub fn (mut a AGI) close() {
 	a.conn.close() or {}
-	println('Connection Closed()')
 }
 
 pub fn (mut a AGI) send_command(cmd string) Response {
@@ -103,13 +102,13 @@ pub fn (mut a AGI) send_command(cmd string) Response {
 		resp.error = 'Failed to send command to Asterisk with error: $err.msg()'
 	}
 
-	for  {
+	for {
 		raw := a.r.read_line() or {
 			resp.error = 'Failed to read buffer with error: $err.msg()'
 			return resp
 		}
 		if raw.contains('HANGUP') || raw.contains('-1') {
-			resp.error = err_hangup
+			resp.error = touched_agi_v.err_hangup
 			break
 		}
 		_, _ := re.match_string(raw)
@@ -124,4 +123,3 @@ pub fn (mut a AGI) send_command(cmd string) Response {
 	}
 	return resp
 }
-
