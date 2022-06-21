@@ -105,6 +105,7 @@ struct Response {
 pub mut:
         error  string
         status string // HTTP-style status code received
+	result string // Asterisk result code
         value  string // Value is the (optional) string value returned
 }
 ```
