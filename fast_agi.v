@@ -22,6 +22,7 @@ pub struct Response {
 pub mut:
 	error  string
 	status string // HTTP-style status code received
+	result string // Asterisk result code
 	value  string // Value is the (optional) string value returned
 }
 
@@ -112,7 +113,10 @@ pub fn (mut a AGI) send_command(cmd string) Response {
 		}
 		_, _ := re.match_string(raw)
 		resp.status = '${re.get_group_by_id(raw, 0)}'
-		resp.value = '${re.get_group_by_id(raw, 1)}'
+		resp.result = '${re.get_group_by_id(raw, 1)}'
+		if re.get_group_by_id(raw, 2) != '' {
+			resp.value = '${re.get_group_by_id(raw, 2)}'
+		}
 		if resp.status != '200' && resp.status != '' {
 			resp.error = 'Non-200 status code'
 		}
