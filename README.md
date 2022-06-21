@@ -2,10 +2,29 @@
 
 This is an Asterisk FastAGI interface library for V-Lang.
 
+#### Install:
+
+```bash
+v install Ouri028.vagi
+```
+
+#### Link dependencies in v.mod:
+
+```V
+Module {
+	name: 'agi'
+	description: ''
+	version: ''
+	license: ''
+	dependencies: ['Ouri028.vagi']
+}
+
+```
+
 ```V
 module main
 
-import vagi
+import ouri028.vagi
 
 pub struct Agi {
 	vagi.AGI
