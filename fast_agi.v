@@ -115,7 +115,7 @@ pub fn (mut a AGI) send_command(cmd string) Response {
 		resp.status = '${re.get_group_by_id(raw, 0)}'
 		resp.result = '${re.get_group_by_id(raw, 1)}'
 		if re.get_group_by_id(raw, 2) != '' {
-			resp.value = '${re.get_group_by_id(raw, 2)}'.trim_space().trim_string_left('(').trim_string_left(')')
+			resp.value = '${re.get_group_by_id(raw, 2)}'.trim_space().trim_string_left('(').trim_string_right(')')
 		}
 		if resp.status != '200' && resp.status != '' {
 			resp.error = 'Non-200 status code'
